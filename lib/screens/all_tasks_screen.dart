@@ -30,7 +30,7 @@ class _TasksListScreenState extends State<TasksListScreen> {
 	onTap: () => Navigator.push(
 	  context,
 	  MaterialPageRoute(
-	    builder: (_) => CategoriesScreen(),
+	    builder: (_) => UrgentAndImportantTasksScreen(),
 	  ),
 	),
       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/screens/not_urgent_and_not_important_tasks_screen.dart';
+import 'package:todoapp/screens/not_urgent_but_important_tasks_screen.dart';
 import '../screens/all_tasks_screen.dart';
 import '../screens/urgent_and_important_tasks_screen.dart';
+import '../screens/urgent_but_not_important_tasks_screen.dart';
 
 class AppDrawer extends StatefulWidget { 
   final VoidCallback? onTap;
@@ -57,7 +60,28 @@ class _AppDrawer extends State<AppDrawer> {
 		  Navigator.push(
 		  context,
 		    MaterialPageRoute(
-		    builder: (_) => CategoriesScreen(),
+		    builder: (_) => UrgentAndImportantTasksScreen(),
+		    ),
+		  );
+		} else if (value == urgencies[2]) {
+		  Navigator.push(
+		  context,
+		    MaterialPageRoute(
+		    builder: (_) => UrgentButNotImportantTasksScreen(),
+		    ),
+		  );
+		} else if (value == urgencies[3]) {
+		  Navigator.push(
+		  context,
+		    MaterialPageRoute(
+		    builder: (_) => NotUrgentButImportantTasksScreen(),
+		    ),
+		  );
+		} else if (value == urgencies[4]) {
+		  Navigator.push(
+		  context,
+		    MaterialPageRoute(
+		    builder: (_) => NotUrgentAndNotImportantTasksScreen(),
 		    ),
 		  );
 		}

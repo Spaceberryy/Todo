@@ -17,14 +17,6 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreen extends State<CategoriesScreen> {
 
-  static List<String> urgencies = [
-    'Urgent and Important',
-    'Urgent but not Important',
-    'Not Urgent but Important',
-    'Not Urgent and Not Important'
-  ];
-
-  String? selectedOption;
 
   @override
   Widget build(BuildContext context) {

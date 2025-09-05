@@ -1,17 +1,59 @@
 import 'package:flutter/material.dart';
 
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget { 
   final VoidCallback? onTap;
 
   const AppDrawer({super.key, required this.onTap});
+  
+  @override
+  State<AppDrawer> createState() => _AppDrawer();
+}
 
+class _AppDrawer extends State<AppDrawer> {
+
+  static List<String> urgencies = [
+    'All Tasks',
+    'Urgent and Important',
+    'Urgent but not Important',
+    'Not Urgent but Important',
+    'Not Urgent and Not Important'
+  ];
+
+  String? selectedCatogory= urgencies.first;
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListTile(
-	title: Text("Categories"), 
-	onTap: onTap,
+      child: ListView(
+	padding: EdgeInsets.zero,
+	children: [
+	  const ListTile(
+	    title: Text(
+	      "Todo",
+	      style: TextStyle(color: Colors.black, fontSize: 20),
+	    ),
+	  ),
+	  ListTile(
+	    title: const Text("Select Category"),
+	    subtitle: DropdownButton<String>(
+	      value: selectedCatogory,
+	      isExpanded: true,
+	      items: urgencies.map(
+		(cat) => DropdownMenuItem( 
+		  value: cat,			    	
+		  child: Text(cat),
+	      )).toList(),
+	      onChanged: (value) {
+		if (value != null) {
+		  setState(() {
+		    selectedCatogory = value;
+		  });
+		}
+	      }, 
+	    ),
+	  ),
+	],
       ),
     );
   }

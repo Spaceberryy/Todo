@@ -4,11 +4,11 @@ import 'providers/task_provider.dart';
 import 'screens/all_tasks_screen.dart';
 
 void main() {
-  runApp(const todoapp());
+  runApp(const Todoapp());
 }
 
-class todoapp extends StatelessWidget {
-  const todoapp({super.key});
+class Todoapp extends StatelessWidget {
+  const Todoapp({super.key});
 
   @override 
   Widget build(BuildContext context) {

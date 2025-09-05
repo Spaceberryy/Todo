@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/task_provider.dart';
-import '../widgets/task_tile.dart';
-import '../widgets/app_drawer.dart';
+import 'task_list_screen.dart';
 import 'task_edit_screen.dart';
-import 'task_categories_screen.dart';
+import '../models/task.dart';
+import '../widgets/app_drawer.dart';
+import '../widgets/task_tile.dart';
 
-class TasksListScreen extends StatefulWidget {
-  const TasksListScreen({super.key});
+class CategoriesScreen extends StatefulWidget {
 
-  @override
-  State<TasksListScreen> createState() => _TasksListScreenState();
+  const CategoriesScreen({super.key});
+
+  @override 
+  State<CategoriesScreen> createState() => _CategoriesScreen();
 }
 
-class _TasksListScreenState extends State<TasksListScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<TasksProvider>(context, listen: false).loadTasks();
-  }
+class _CategoriesScreen extends State<CategoriesScreen> {
+
+  static List<String> urgencies = [
+    'Urgent and Important',
+    'Urgent but not Important',
+    'Not Urgent but Important',
+    'Not Urgent and Not Important'
+  ];
+
+  String? selectedOption;
 
   @override
   Widget build(BuildContext context) {
     final tasksProvider = Provider.of<TasksProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My Tasks')),
-      drawer: AppDrawer(
-	onTap: () => Navigator.push(
-	  context,
-	  MaterialPageRoute(
-	    builder: (_) => CategoriesScreen(),
-	  ),
-	),
-      ),
+      appBar: AppBar(title: const Text('Categories')),
       backgroundColor: Colors.blueGrey,
       body: tasksProvider.tasks.isEmpty
           ? const Center(child: Text('No tasks yet.'))
@@ -55,11 +53,6 @@ class _TasksListScreenState extends State<TasksListScreen> {
                 );
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const TaskEditScreen())),
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }

@@ -29,6 +29,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
   void initState() {
     super.initState();
     _controller = TextEditingController(text: widget.task?.content ?? '');
+    selectedOption = _checkIfTaskExists();
   }
 
   @override
@@ -46,7 +47,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
     if (widget.task == null) {
       await tasksProvider.addTask(content, selectedOption!);
     } else {
-      await tasksProvider.updateTask(widget.task!.id, content, widget.task!.urgency);
+      await tasksProvider.updateTask(widget.task!.id, content, selectedOption!);
     }
     if (context.mounted) Navigator.pop(context);
   }
@@ -76,7 +77,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
               ),
             ),
 	    DropdownButton<String>(
-	      value: _checkIfTaskExists(),
+	      value: selectedOption,
 	      elevation: 16,
 	      style: const TextStyle(height: 2, color: Colors.blueGrey),
 	      onChanged: (String? value) {

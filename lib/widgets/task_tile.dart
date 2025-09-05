@@ -12,6 +12,7 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(task.content),
+      subtitle: Text(task.urgency),
       onTap: onTap,
       trailing: IconButton(
         icon: const Icon(Icons.delete),

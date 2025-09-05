@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/task_provider.dart';
-import 'task_list_screen.dart';
+import 'all_tasks_screen.dart';
 import 'task_edit_screen.dart';
 import '../models/task.dart';
 import '../widgets/app_drawer.dart';
@@ -17,13 +17,14 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreen extends State<CategoriesScreen> {
 
+  String urgency = 'Urgent and Important';
 
   @override
   Widget build(BuildContext context) {
     final tasksProvider = Provider.of<TasksProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Categories')),
+      appBar: AppBar(title: const Text('Urgent and Important')),
       backgroundColor: Colors.blueGrey,
       body: tasksProvider.tasks.isEmpty
           ? const Center(child: Text('No tasks yet.'))
@@ -31,18 +32,20 @@ class _CategoriesScreen extends State<CategoriesScreen> {
               itemCount: tasksProvider.tasks.length,
               itemBuilder: (context, idx) {
                 final task = tasksProvider.tasks[idx];
-                return TaskTile(
-                  task: task,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => TaskEditScreen(task: task),
-                    ),
-                  ),
-                  onDelete: () async {
-                    await tasksProvider.deleteTask(task.id);
-                  },
-                );
+		if (task.urgency == urgency) {
+		  return TaskTile(
+		    task: task,
+		    onTap: () => Navigator.push(
+		      context,
+		      MaterialPageRoute(
+			builder: (_) => TaskEditScreen(task: task),
+		      ),
+		    ),
+		    onDelete: () async {
+		      await tasksProvider.deleteTask(task.id);
+		    },
+		  );
+		}
               },
             ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../screens/all_tasks_screen.dart';
+import '../screens/urgent_and_important_tasks_screen.dart';
 
 class AppDrawer extends StatefulWidget { 
   final VoidCallback? onTap;
@@ -45,10 +46,20 @@ class _AppDrawer extends State<AppDrawer> {
 		  child: Text(cat),
 	      )).toList(),
 	      onChanged: (value) {
-		if (value != null) {
-		  setState(() {
-		    selectedCatogory = value;
-		  });
+		if (value == urgencies[0]) {
+		  Navigator.push(
+		  context,
+		    MaterialPageRoute(
+		    builder: (_) => TasksListScreen(),
+		    ),
+		  );
+		} else if (value == urgencies[1]) {
+		  Navigator.push(
+		  context,
+		    MaterialPageRoute(
+		    builder: (_) => CategoriesScreen(),
+		    ),
+		  );
 		}
 	      }, 
 	    ),

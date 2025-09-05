@@ -4,7 +4,7 @@ import '../providers/task_provider.dart';
 import '../widgets/task_tile.dart';
 import '../widgets/app_drawer.dart';
 import 'task_edit_screen.dart';
-import 'task_categories_screen.dart';
+import 'urgent_and_important_tasks_screen.dart';
 
 class TasksListScreen extends StatefulWidget {
   const TasksListScreen({super.key});
@@ -25,7 +25,7 @@ class _TasksListScreenState extends State<TasksListScreen> {
     final tasksProvider = Provider.of<TasksProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My Tasks')),
+      appBar: AppBar(title: const Text('All Tasks')),
       drawer: AppDrawer(
 	onTap: () => Navigator.push(
 	  context,

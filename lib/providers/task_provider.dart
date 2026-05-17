@@ -15,13 +15,21 @@ class TasksProvider with ChangeNotifier {
   }
 
   Future<void> addTask(String content, String urgency) async {
-    final newTask = Task(id: const Uuid().v4(), content: content, urgency: urgency);
+    final newTask = Task(
+      id: const Uuid().v4(),
+      content: content,
+      urgency: urgency,
+    );
     _tasks.add(newTask);
     await _storage.saveTasks(_tasks);
     notifyListeners();
   }
 
-  Future<void> updateTask(String id, String newContent, String newUrgency) async {
+  Future<void> updateTask(
+    String id,
+    String newContent,
+    String newUrgency,
+  ) async {
     final idx = _tasks.indexWhere((n) => n.id == id);
     if (idx != -1) {
       _tasks[idx] = Task(id: id, content: newContent, urgency: newUrgency);

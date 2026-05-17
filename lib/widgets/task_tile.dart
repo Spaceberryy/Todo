@@ -14,10 +14,7 @@ class TaskTile extends StatelessWidget {
       title: Text(task.content),
       subtitle: Text(task.urgency),
       onTap: onTap,
-      trailing: IconButton(
-        icon: const Icon(Icons.delete),
-        onPressed: onDelete,
-      ),
+      trailing: IconButton(icon: const Icon(Icons.delete), onPressed: onDelete),
     );
   }
 }

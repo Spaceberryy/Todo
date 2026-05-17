@@ -80,7 +80,9 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
             DropdownButton<String>(
               value: selectedOption,
               elevation: 16,
-              style: const TextStyle(height: 2),
+              style: TextStyle(height: 2, color: cs.onSurface),
+              dropdownColor: cs.surface,
+              borderRadius: BorderRadius.circular(8),
               onChanged: (String? value) {
                 setState(() {
                   selectedOption = value!;
@@ -89,7 +91,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
               items: urgencies.map((option) {
                 return DropdownMenuItem<String>(
                   value: option,
-                  child: Text(option),
+                  child: Text(option, style: TextStyle(color: cs.onSurface)),
                 );
               }).toList(),
             ),

@@ -35,19 +35,19 @@ class _UrgentButNotImportantTasksScreen extends State<UrgentButNotImportantTasks
           : ListView.builder(
               itemCount: filteredTasks.length,
               itemBuilder: (context, idx) {
-                final task = tasksProvider.tasks[idx];
-		  return TaskTile(
-		    task: task,
-		    onTap: () => Navigator.push(
-		      context,
-		      MaterialPageRoute(
-			builder: (_) => TaskEditScreen(task: task),
-		      ),
-		    ),
-		    onDelete: () async {
-		      await tasksProvider.deleteTask(task.id);
-		    },
-		  );
+                final task = filteredTasks[idx];
+                return TaskTile(
+                  task: task,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => TaskEditScreen(task: task),
+                    ),
+                  ),
+                  onDelete: () async {
+                    await tasksProvider.deleteTask(task.id);
+                  },
+                );
               },
             ),
     );

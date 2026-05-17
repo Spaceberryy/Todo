@@ -29,7 +29,7 @@ class _UrgentAndImportantTasksScreen extends State<UrgentAndImportantTasksScreen
           : ListView.builder(
               itemCount: filteredTasks.length,
               itemBuilder: (context, idx) {
-                final task = tasksProvider.tasks[idx];
+                final task = filteredTasks[idx];
 		  return TaskTile(
 		    task: task,
 		    onTap: () => Navigator.push(

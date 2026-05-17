@@ -12,17 +12,17 @@ class Task {
   });
 
   Map<String, dynamic> toMap() => {
-        'id': id,
-        'content': content,
-	'urgency': urgency,
-      };
+    'id': id,
+    'content': content,
+    'urgency': urgency,
+  };
 
   factory Task.fromMap(Map<String, dynamic> map) =>
-      Task(
-      id: map['id'], 
-      content: map['content'],
-      urgency: map['urgency'],
-    );
+    Task(
+    id: map['id'],
+    content: map['content'],
+    urgency: map['urgency'],
+  );
 
   static List<Task> decode(String tasks) => (json.decode(tasks) as List<dynamic>)
       .map<Task>((task) => Task.fromMap(task))

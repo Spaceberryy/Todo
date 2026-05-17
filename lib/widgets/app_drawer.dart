@@ -4,6 +4,7 @@ import 'package:todoapp/screens/not_urgent_but_important_tasks_screen.dart';
 import '../screens/all_tasks_screen.dart';
 import '../screens/urgent_and_important_tasks_screen.dart';
 import '../screens/urgent_but_not_important_tasks_screen.dart';
+import '../screens/settings_screen.dart';
 
 class AppDrawer extends StatefulWidget {
   final VoidCallback? onTap;
@@ -23,7 +24,7 @@ class _AppDrawer extends State<AppDrawer> {
     'Not Urgent and Not Important',
   ];
 
-  String? selectedCatogory = urgencies.first;
+  String? selectedCategory = urgencies.first;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _AppDrawer extends State<AppDrawer> {
           ListTile(
             title: const Text("Select Category"),
             subtitle: DropdownButton<String>(
-              value: selectedCatogory,
+              value: selectedCategory,
               isExpanded: true,
               items: urgencies
                   .map((cat) => DropdownMenuItem(value: cat, child: Text(cat)))
@@ -82,6 +83,18 @@ class _AppDrawer extends State<AppDrawer> {
                 }
               },
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SettingsPage(),
+                ),
+              );
+            },
           ),
         ],
       ),

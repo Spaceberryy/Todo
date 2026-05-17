@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/task.dart';
 import '../providers/task_provider.dart';
+import '../providers/themes.dart';
 
 class TaskEditScreen extends StatefulWidget {
   final Task? task;
@@ -61,6 +62,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
   @override
   Widget build(BuildContext context) {
     final isEdit = widget.task != null;
+    final cs = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(title: Text(isEdit ? 'Edit Task' : 'Add Task')),
       body: Padding(
@@ -78,7 +80,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
             DropdownButton<String>(
               value: selectedOption,
               elevation: 16,
-              style: const TextStyle(height: 2, color: Colors.blueGrey),
+              style: const TextStyle(height: 2),
               onChanged: (String? value) {
                 setState(() {
                   selectedOption = value!;

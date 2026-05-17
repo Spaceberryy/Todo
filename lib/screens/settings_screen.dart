@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../themes/themes.dart';
+import '../providers/themes.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final themeNotifier = context.watch<ThemeNotifier>();
 
     return Scaffold(
       appBar: AppBar(title: Text("Settings")),
@@ -15,23 +15,23 @@ class SettingsPage extends StatelessWidget {
         children: [
           ListTile(
             title: const Text('Yellow'),
-            onTap: () => themeNotifier.setTheme(yellowTheme),
+            onTap: () => themeNotifier.setTheme("yellow"),
           ),
           ListTile(
             title: const Text('Blue'),
-            onTap: () => themeNotifier.setTheme(blueTheme),
+            onTap: () => themeNotifier.setTheme("blue"),
           ),
           ListTile(
             title: const Text('Pink'),
-            onTap: () => themeNotifier.setTheme(pinkTheme),
+            onTap: () => themeNotifier.setTheme("pink"),
           ),
           ListTile(
             title: const Text('Grey'),
-            onTap: () => themeNotifier.setTheme(greyTheme),
+            onTap: () => themeNotifier.setTheme("grey"),
           ),
           ListTile(
             title: const Text('Dark'),
-            onTap: () => themeNotifier.setTheme(darkTheme),
+            onTap: () => themeNotifier.setTheme("dark"),
           ),
         ],
       ),

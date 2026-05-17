@@ -32,7 +32,6 @@ class _TasksListScreenState extends State<TasksListScreen> {
           MaterialPageRoute(builder: (_) => UrgentAndImportantTasksScreen()),
         ),
       ),
-      backgroundColor: Colors.blueGrey,
       body: tasksProvider.tasks.isEmpty
           ? const Center(child: Text('No tasks yet.'))
           : ListView.builder(

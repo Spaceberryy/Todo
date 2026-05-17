@@ -19,7 +19,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
     'Urgent and Important',
     'Urgent but not Important',
     'Not Urgent but Important',
-    'Not Urgent and Not Important'
+    'Not Urgent and Not Important',
   ];
 
   String? selectedOption;
@@ -40,8 +40,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
   void _saveTask() async {
     final content = _controller.text.trim();
     if (content.isEmpty) return;
-    final tasksProvider =
-        Provider.of<TasksProvider>(context, listen: false);
+    final tasksProvider = Provider.of<TasksProvider>(context, listen: false);
 
     if (widget.task == null) {
       await tasksProvider.addTask(content, selectedOption!);
@@ -50,12 +49,13 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
     }
     if (context.mounted) Navigator.pop(context);
   }
+
   String _checkIfTaskExists() {
-      if (widget.task != null) {
-	return widget.task!.urgency;	
-      } else {
-	return urgencies.first;
-      }
+    if (widget.task != null) {
+      return widget.task!.urgency;
+    } else {
+      return urgencies.first;
+    }
   }
 
   @override
@@ -75,22 +75,22 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-	    DropdownButton<String>(
-	      value: selectedOption,
-	      elevation: 16,
-	      style: const TextStyle(height: 2, color: Colors.blueGrey),
-	      onChanged: (String? value) {
-		setState(() {
-		  selectedOption = value!;
-		});
-	      },
-	      items: urgencies.map((option) {
-		return DropdownMenuItem<String>(
-		  value: option,
-		  child: Text(option),
-		);
-	      }).toList(),
-	    ),
+            DropdownButton<String>(
+              value: selectedOption,
+              elevation: 16,
+              style: const TextStyle(height: 2, color: Colors.blueGrey),
+              onChanged: (String? value) {
+                setState(() {
+                  selectedOption = value!;
+                });
+              },
+              items: urgencies.map((option) {
+                return DropdownMenuItem<String>(
+                  value: option,
+                  child: Text(option),
+                );
+              }).toList(),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _saveTask,

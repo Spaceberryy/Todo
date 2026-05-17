@@ -27,12 +27,10 @@ class _TasksListScreenState extends State<TasksListScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('All Tasks')),
       drawer: AppDrawer(
-	onTap: () => Navigator.push(
-	  context,
-	  MaterialPageRoute(
-	    builder: (_) => UrgentAndImportantTasksScreen(),
-	  ),
-	),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => UrgentAndImportantTasksScreen()),
+        ),
       ),
       backgroundColor: Colors.blueGrey,
       body: tasksProvider.tasks.isEmpty
@@ -57,7 +55,9 @@ class _TasksListScreenState extends State<TasksListScreen> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const TaskEditScreen())),
+          context,
+          MaterialPageRoute(builder: (_) => const TaskEditScreen()),
+        ),
         child: const Icon(Icons.add),
       ),
     );

@@ -10,15 +10,15 @@ void main() {
 class Todoapp extends StatelessWidget {
   const Todoapp({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TasksProvider(),
       child: MaterialApp(
-	title: 'Just do it',
-	theme: ThemeData(primarySwatch: Colors.blueGrey),
-	home: const TasksListScreen(),
-	debugShowCheckedModeBanner: false,
+        title: 'Just do it',
+        theme: ThemeData(primarySwatch: Colors.blueGrey),
+        home: const TasksListScreen(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

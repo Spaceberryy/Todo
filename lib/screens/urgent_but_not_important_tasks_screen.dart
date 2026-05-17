@@ -5,15 +5,15 @@ import 'task_edit_screen.dart';
 import '../widgets/task_tile.dart';
 
 class UrgentButNotImportantTasksScreen extends StatefulWidget {
-
   const UrgentButNotImportantTasksScreen({super.key});
 
-  @override 
-  State<UrgentButNotImportantTasksScreen> createState() => _UrgentButNotImportantTasksScreen();
+  @override
+  State<UrgentButNotImportantTasksScreen> createState() =>
+      _UrgentButNotImportantTasksScreen();
 }
 
-class _UrgentButNotImportantTasksScreen extends State<UrgentButNotImportantTasksScreen> {
-
+class _UrgentButNotImportantTasksScreen
+    extends State<UrgentButNotImportantTasksScreen> {
   // reference
   // 'All Tasks',
   // 'Urgent and Important',
@@ -25,7 +25,9 @@ class _UrgentButNotImportantTasksScreen extends State<UrgentButNotImportantTasks
   @override
   Widget build(BuildContext context) {
     final tasksProvider = Provider.of<TasksProvider>(context);
-    final filteredTasks = tasksProvider.tasks.where((task) => task.urgency == urgency).toList();
+    final filteredTasks = tasksProvider.tasks
+        .where((task) => task.urgency == urgency)
+        .toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Urgent but Not Important')),

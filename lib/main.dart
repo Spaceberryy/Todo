@@ -30,7 +30,7 @@ class Todoapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       return MaterialApp(
-        title: 'Please do it',
+        title: 'Tudu',
         theme: context.watch<ThemeNotifier>().currentTheme,
         home: Consumer<AuthProvider>(
           builder: (context, auth, _) {

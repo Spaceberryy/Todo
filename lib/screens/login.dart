@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               // App title
               const Text(
-                'Just do it',
+                'tudu',
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,

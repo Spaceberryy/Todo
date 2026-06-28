@@ -46,6 +46,7 @@ class AuthProvider extends ChangeNotifier {
       await supabase.auth.signInWithOAuth(
         OAuthProvider.google,
         redirectTo: 'com.example.todoapp://login-callback',
+        authScreenLaunchMode: LaunchMode.externalApplication,
       );
     } catch (e) {
       _error = e.toString();

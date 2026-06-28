@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/task_provider.dart';
+import '../providers/auth_provider.dart';
 import '../widgets/task_tile.dart';
 import '../widgets/app_drawer.dart';
 import 'task_edit_screen.dart';
@@ -25,7 +26,15 @@ class _TasksListScreenState extends State<TasksListScreen> {
     final tasksProvider = Provider.of<TasksProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('All Tasks')),
+      appBar: AppBar(
+          title: const Text('All Tasks'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () => context.read<AuthProvider>().signOut(),
+            ),
+          ],
+      ),
       drawer: AppDrawer(
         onTap: () => Navigator.push(
           context,

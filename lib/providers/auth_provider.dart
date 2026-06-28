@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import '../config/supabase_config.dart';
+import 'dart:async';
 
 class AuthProvider extends ChangeNotifier {
   User? _user;
-  bool _isLoading = false;
+  bool _isLoading = true;
   String? _error;
+
+  late final StreamSubscription _authSubscription;
 
   User? get user => _user;
   bool get isLoading => _isLoading;
@@ -18,10 +20,21 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void _initializeAuth() {
-    supabase.auth.onAuthStateChange.listen((data) {
-      _user = data.session?.user;
-      notifyListeners();
-    });
+    // 1. Restore session immediately (critical for APK cold start)
+    final session = supabase.auth.currentSession;
+    _user = session?.user;
+
+    // mark loading done after first sync
+    _isLoading = false;
+    notifyListeners();
+
+    // 2. Listen to auth changes
+    _authSubscription =
+        supabase.auth.onAuthStateChange.listen((data) {
+          _user = data.session?.user;
+          _isLoading = false;
+          notifyListeners();
+        });
   }
 
   Future<void> signInWithGoogle() async {
@@ -30,27 +43,12 @@ class AuthProvider extends ChangeNotifier {
       _error = null;
       notifyListeners();
 
-      final googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return;
-
-      final googleAuth = await googleUser.authentication;
-      final accessToken = googleAuth.accessToken;
-      final idToken = googleAuth.idToken;
-
-      if (accessToken == null || idToken == null) {
-        throw 'Missing tokens from Google sign in';
-      }
-
-      await supabase.auth.signInWithIdToken(
-        provider: OAuthProvider.google,
-        idToken: idToken,
-        accessToken: accessToken,
+      await supabase.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: 'com.example.todoapp://login-callback',
       );
-
-      _user = supabase.auth.currentUser;
     } catch (e) {
       _error = e.toString();
-    } finally {
       _isLoading = false;
       notifyListeners();
     }
@@ -59,6 +57,8 @@ class AuthProvider extends ChangeNotifier {
   Future<void> signOut() async {
     try {
       _isLoading = true;
+      notifyListeners();
+
       await supabase.auth.signOut();
       _user = null;
     } catch (e) {
@@ -68,12 +68,10 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  @override
+  void dispose() {
+    _authSubscription.cancel();
+    super.dispose();
+  }
 }
-
-
-
-
-
-
-
-

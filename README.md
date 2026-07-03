@@ -31,7 +31,7 @@ A cross-platform task management application built with Flutter.
 1. Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/todoapp.git
+git clone https://github.com/Spaceberryy/Todo.git
 ```
 
 2. Navigate to the project.

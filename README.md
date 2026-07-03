@@ -46,10 +46,6 @@ cd todoapp
 flutter pub get
 ```
 
-4. Configure Supabase.
-
-Create a configuration file and add your project's URL and anon key.
-
 5. Run the application.
 
 ```bash

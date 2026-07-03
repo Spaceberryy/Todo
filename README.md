@@ -71,12 +71,10 @@ lib/
 ## Future Improvements
 
 - Recurring tasks
+- Notifications and due time selection
 - Categories and tags
 - Offline support
 - Task sharing
 - Calendar integration
 - Dark mode customization
 
-## License
-
-This project is licensed under the MIT License.

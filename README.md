@@ -1,16 +1,82 @@
-# todoapp
+# Todo App
 
-A new Flutter project.
+A cross-platform task management application built with Flutter.
+
+## Features
+
+- Create tasks with a title and description
+- View upcoming tasks
+- Google authentication
+- Cloud synchronization using Supabase
+- Clean and responsive Material Design interface
+
+## Tech Stack
+
+- Flutter
+- Dart
+- Supabase
+- Google Sign-In
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK
+- Dart SDK
+- Android Studio or VS Code
+- A configured Supabase project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository.
+
+```bash
+git clone https://github.com/yourusername/todoapp.git
+```
+
+2. Navigate to the project.
+
+```bash
+cd todoapp
+```
+
+3. Install dependencies.
+
+```bash
+flutter pub get
+```
+
+4. Configure Supabase.
+
+Create a configuration file and add your project's URL and anon key.
+
+5. Run the application.
+
+```bash
+flutter run
+```
+
+## Project Structure
+
+```
+lib/
+├── models/
+├── providers/
+├── screens/
+├── services/
+├── widgets/
+└── main.dart
+```
+
+## Future Improvements
+
+- Recurring tasks
+- Categories and tags
+- Offline support
+- Task sharing
+- Calendar integration
+- Dark mode customization
+
+## License
+
+This project is licensed under the MIT License.

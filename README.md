@@ -17,15 +17,6 @@ A cross-platform task management application built with Flutter.
 - Supabase
 - Google Sign-In
 
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK
-- Dart SDK
-- Android Studio or VS Code
-- A configured Supabase project
-
 ## Future Improvements
 
 - Recurring tasks
